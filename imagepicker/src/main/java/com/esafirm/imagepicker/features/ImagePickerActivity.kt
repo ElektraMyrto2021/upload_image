@@ -7,19 +7,18 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.esafirm.imagepicker.R
 import com.esafirm.imagepicker.features.cameraonly.CameraOnlyConfig
-import com.esafirm.imagepicker.helper.ConfigUtils
-import com.esafirm.imagepicker.helper.ImagePickerUtils
-import com.esafirm.imagepicker.helper.IpCrasher
-import com.esafirm.imagepicker.helper.LocaleManager
-import com.esafirm.imagepicker.helper.ViewUtils
+import com.esafirm.imagepicker.helper.*
 import com.esafirm.imagepicker.model.Image
+import com.github.basshelal.unsplashpicker.data.UnsplashPhoto
 
-class ImagePickerActivity : AppCompatActivity(), ImagePickerInteractionListener {
+class ImagePickerActivity : AppCompatActivity(), ImagePickerInteractionListener,OnPhotoSelectedListener {
 
     companion object {
         private const val RC_CAMERA = 1011
@@ -70,7 +69,7 @@ class ImagePickerActivity : AppCompatActivity(), ImagePickerInteractionListener 
             imagePickerFragment =
                 supportFragmentManager.findFragmentById(R.id.ef_imagepicker_fragment_placeholder) as ImagePickerFragment
         } else {
-            imagePickerFragment = ImagePickerFragment.newInstance(currentConfig)
+            imagePickerFragment = ImagePickerFragment.newInstance()
             val ft = supportFragmentManager.beginTransaction()
             ft.replace(R.id.ef_imagepicker_fragment_placeholder, imagePickerFragment)
             ft.commit()
@@ -128,6 +127,7 @@ class ImagePickerActivity : AppCompatActivity(), ImagePickerInteractionListener 
 
     private fun setupView(config: ImagePickerConfig) {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.visibility= View.GONE
         setSupportActionBar(toolbar)
         actionBar = supportActionBar
         actionBar?.run {
@@ -176,6 +176,19 @@ class ImagePickerActivity : AppCompatActivity(), ImagePickerInteractionListener 
     }
 
     override fun finishPickImages(result: Intent?) {
+        setResult(RESULT_OK, result)
+        finish()
+    }
+
+    override fun onClickPhoto(photo: UnsplashPhoto, imageView: ImageView) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLongClickPhoto(photo: UnsplashPhoto, imageView: ImageView) {
+        TODO("Not yet implemented")
+    }
+
+    override fun finishPickUnsplashImages(result: Intent?) {
         setResult(RESULT_OK, result)
         finish()
     }

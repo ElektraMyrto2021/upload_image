@@ -71,24 +71,26 @@ class DefaultCameraModule : CameraModule {
 
         val imageUri = Uri.parse(currentImagePath)
         if (imageUri != null) {
-            MediaScannerConnection.scanFile(
-                context.applicationContext,
-                arrayOf(imageUri.path),
-                null
-            ) { path: String?, uri: Uri? ->
-                IpLogger.d("File $path was scanned successfully: $uri")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+                MediaScannerConnection.scanFile(
+                    context.applicationContext,
+                    arrayOf(imageUri.path),
+                    null
+                ) { path: String?, uri: Uri? ->
+                    IpLogger.d("File $path was scanned successfully: $uri")
 
-                if (path == null) {
-                    IpLogger.d("This should not happen, go back to Immediate implementation")
-                }
-                if (uri == null) {
-                    IpLogger.d("scanFile is failed. Uri is null")
-                }
+                    if (path == null) {
+                        IpLogger.d("This should not happen, go back to Immediate implementation")
+                    }
+                    if (uri == null) {
+                        IpLogger.d("scanFile is failed. Uri is null")
+                    }
 
-                val finalPath = path ?: currentImagePath!!
-                val finalUri = uri ?: Uri.parse(currentUri)
-                imageReadyListener.invoke(ImageFactory.singleImage(finalUri, finalPath))
-                ImagePickerUtils.revokeAppPermission(context, imageUri)
+                    val finalPath = path ?: currentImagePath!!
+                    val finalUri = uri ?: Uri.parse(currentUri)
+                    imageReadyListener.invoke(ImageFactory.singleImage(finalUri, finalPath))
+                    ImagePickerUtils.revokeAppPermission(context, imageUri)
+                }
             }
         }
     }

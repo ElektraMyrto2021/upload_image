@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.esafirm.imagepicker.features.*
 import com.esafirm.imagepicker.features.cameraonly.CameraOnlyConfig
 import com.esafirm.imagepicker.model.Image
+import com.esafirm.sample.UploadPhoto.testuploadactivity
 import com.esafirm.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         images.addAll(it)
         printImages(images)
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,8 +108,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startCustomUI() {
-        val intent = Intent(this, CustomUIActivity::class.java)
-        intent.putExtra(ImagePickerConfig::class.java.simpleName, createConfig())
+        val intent = Intent(this, testuploadactivity::class.java)
+        //intent.putExtra(ImagePickerConfig::class.java.simpleName, createConfig())
         startActivityForResult(intent, IpCons.RC_IMAGE_PICKER)
     }
 

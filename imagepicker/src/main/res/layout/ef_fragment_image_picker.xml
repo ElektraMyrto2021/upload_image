@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/ef_rounded_transparent_radius_12"
     android:layout_height="match_parent">
 
     <TextView
@@ -23,7 +24,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/ef_rounded_transparent_radius_12" />
 
     <com.esafirm.imagepicker.view.SnackBarView
         android:id="@+id/ef_snackbar"

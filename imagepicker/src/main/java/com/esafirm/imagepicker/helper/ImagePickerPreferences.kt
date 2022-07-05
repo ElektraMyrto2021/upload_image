@@ -1,6 +1,7 @@
 package com.esafirm.imagepicker.helper
 
 import android.content.Context
+import android.os.Build
 import android.preference.PreferenceManager
 
 class ImagePickerPreferences(context: Context) {
@@ -16,9 +17,11 @@ class ImagePickerPreferences(context: Context) {
      * Set a permission is requested
      */
     fun setPermissionIsRequested() {
-        preferences.edit()
-            .putBoolean(KEY_PERMISSION_GRANTED, true)
-            .apply()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            preferences.edit()
+                .putBoolean(KEY_PERMISSION_GRANTED, true)
+                .apply()
+        }
     }
 
     /**

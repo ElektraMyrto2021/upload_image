@@ -3,4 +3,22 @@
     <color name="colorPrimary">#E91E63</color>
     <color name="colorPrimaryDark">#C2185B</color>
     <color name="colorAccent">#3F51B5</color>
+    <color name="blue_whale">#0F293D</color>
+    <color name="neutral_10">#F2F2F2</color>
+    <color name="neutral_80">#282828</color>
+    <color name="lightGreen">#A3DDA3</color>
+    <color name="colorPrimaryS">#181818</color>
+    <color name="colorPrimaryDarkS">#000000</color>
+    <color name="colorAccentS">#181818</color>
+
+    <!--                         DON'T OVERRIDE THESE!                          -->
+    <!-- Use the Xml attributes for UnsplashPhotoPicker to change colors instead-->
+
+    <color name="photoPickerPrivate_pickerColorBackground">#ffffffff</color>
+    <color name="photoPickerPrivate_searchBarBackground">#8FFFFFFF</color>
+    <color name="photoPickerPrivate_searchBarImageTint">#FF000000</color>
+    <color name="photoPickerPrivate_showPhotoBackground">#EF000000</color>
+    <color name="photoPickerPrivate_showPhotoTextColor">#ffffffff</color>
+    <color name="photoPickerPrivate_colorGradientOverlay">#44000000</color>
+    <color name="photoPickerPrivate_colorSelectedOverlay">#66ffffff</color>
 </resources>

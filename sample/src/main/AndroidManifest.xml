@@ -3,15 +3,51 @@
     package="com.esafirm.sample">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.esafirm.sample.MainActivity">
+        android:label=" "
+        android:theme="@style/AppTheme"
+        >
+        <activity
+            android:name="com.esafirm.sample.UploadPhoto.testuploadactivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+<!--        <activity-->
+<!--            android:name="com.esafirm.sample.UploadPhoto.testuploadactivity"-->
+<!--            android:configChanges="orientation|keyboardHidden|screenSize"-->
+<!--            android:windowSoftInputMode="adjustResize" >-->
+<!--            &lt;!&ndash;            <intent-filter>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
+<!--            &lt;!&ndash;                <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
+<!--            &lt;!&ndash;            </intent-filter>&ndash;&gt;-->
+<!--        </activity>-->
+
+        <activity
+            android:name="com.esafirm.sample.UploadPhoto.PhotoUploadActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustResize" >
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name="com.dropbox.core.android.AuthActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <data android:scheme="db-4un8t7hjssl3j0o" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity

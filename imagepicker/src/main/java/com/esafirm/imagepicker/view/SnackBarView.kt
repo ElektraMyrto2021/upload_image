@@ -1,6 +1,7 @@
 package com.esafirm.imagepicker.view
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.animation.Interpolator
 import android.widget.RelativeLayout
@@ -20,10 +21,19 @@ class SnackBarView @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.ef_imagepikcer_snackbar, this)
-        if (!isInEditMode) {
+        if (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+                !isInEditMode
+            } else {
+                TODO("VERSION.SDK_INT < CUPCAKE")
+            }
+        ) {
             val height = context.resources.getDimensionPixelSize(R.dimen.ef_height_snackbar)
-            translationY = height.toFloat()
-            alpha = 0f
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                translationY = height.toFloat()
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                alpha = 0f
+            }
         }
     }
 
@@ -31,10 +41,12 @@ class SnackBarView @JvmOverloads constructor(
         txtCaption.text = context.getString(textResId)
         btnAction.setOnClickListener(onClickListener)
 
-        animate().translationY(0f)
-            .setDuration(ANIM_DURATION.toLong())
-            .setInterpolator(INTERPOLATOR)
-            .alpha(1f)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
+            animate().translationY(0f)
+                .setDuration(ANIM_DURATION.toLong())
+                .setInterpolator(INTERPOLATOR)
+                .alpha(1f)
+        }
     }
 
     companion object {

@@ -6,9 +6,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.1'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.squareup.picasso:picasso:2.71828'
+        classpath 'com.dropbox.core:dropbox-core-sdk:5.1.1'
+
     }
 }
 
@@ -25,6 +28,8 @@ allprojects {
         mavenCentral()
         google()
         maven { url "https://jitpack.io" }
+        jcenter()
+
     }
 }
 

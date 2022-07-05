@@ -2,6 +2,7 @@ package com.esafirm.imagepicker.adapter
 
 import android.content.Context
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,6 @@ import com.esafirm.imagepicker.listeners.OnImageClickListener
 import com.esafirm.imagepicker.listeners.OnImageSelectedListener
 import com.esafirm.imagepicker.model.Image
 import kotlinx.android.synthetic.main.ef_imagepicker_item_image.view.*
-import java.util.HashMap
 
 class ImagePickerAdapter(
     context: Context,
@@ -71,7 +71,11 @@ class ImagePickerAdapter(
         if (ImagePickerUtils.isVideoFormat(image)) {
             if (!videoDurationHolder.containsKey(image.id)) {
                 val uri =
-                    Uri.withAppendedPath(MediaStore.Files.getContentUri("external"), "" + image.id)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        Uri.withAppendedPath(MediaStore.Files.getContentUri("external"), "" + image.id)
+                    } else {
+                        TODO("VERSION.SDK_INT < HONEYCOMB")
+                    }
                 videoDurationHolder[image.id] = ImagePickerUtils.getVideoDurationLabel(
                     context, uri
                 )

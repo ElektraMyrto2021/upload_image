@@ -14,7 +14,6 @@ import com.esafirm.imagepicker.helper.ImagePickerUtils
 import com.esafirm.imagepicker.model.Folder
 import com.esafirm.imagepicker.model.Image
 import java.io.File
-import java.util.ArrayList
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -139,7 +138,11 @@ class DefaultImageFileLoader(private val context: Context) : ImageFileLoader {
 
         private fun getSourceUri(): Uri {
             return if (onlyVideo || includeVideo) {
-                MediaStore.Files.getContentUri("external")
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    MediaStore.Files.getContentUri("external")
+                } else {
+                    TODO("VERSION.SDK_INT < HONEYCOMB")
+                }
             } else MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         }
 

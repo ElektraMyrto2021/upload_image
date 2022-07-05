@@ -18,4 +18,11 @@
         <item name="android:layout_marginBottom">@dimen/ef_spacing</item>
     </style>
 
+    <style name="Poppins_Semi_Bold_Neutral80_14sp">
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/neutral_80</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
 </resources>

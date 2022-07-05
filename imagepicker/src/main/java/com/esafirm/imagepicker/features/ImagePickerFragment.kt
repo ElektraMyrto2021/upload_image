@@ -6,8 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.os.Parcelable
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -31,12 +33,12 @@ import com.esafirm.imagepicker.helper.IpLogger
 import com.esafirm.imagepicker.helper.state.fetch
 import com.esafirm.imagepicker.model.Folder
 import com.esafirm.imagepicker.model.Image
-import java.util.ArrayList
 
 class ImagePickerFragment : Fragment() {
 
     private var binding: EfFragmentImagePickerBinding? = null
     private lateinit var recyclerViewManager: RecyclerViewManager
+    private val images = arrayListOf<com.esafirm.imagepicker.model.Image>()
 
     private val preferences: ImagePickerPreferences by lazy {
         ImagePickerPreferences(requireContext())
@@ -117,7 +119,6 @@ class ImagePickerFragment : Fragment() {
         // Assignment for property
         this.binding = viewBinding
         this.recyclerViewManager = recyclerViewManager
-
         return view
     }
 
@@ -191,6 +192,7 @@ class ImagePickerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         loadDataWithPermission()
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -382,13 +384,49 @@ class ImagePickerFragment : Fragment() {
         private const val RC_CAPTURE = 2000
         private const val RC_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 23
 
-        fun newInstance(config: ImagePickerConfig): ImagePickerFragment {
+        fun newInstance(): ImagePickerFragment {
             val args = Bundle().apply {
-                putParcelable(ImagePickerConfig::class.java.simpleName, config)
+                putParcelable(ImagePickerConfig::class.java.simpleName, createConfig())
             }
             return ImagePickerFragment().apply {
                 arguments = args
             }
         }
+
+        private fun createConfig(): ImagePickerConfig {
+             val images = arrayListOf<com.esafirm.imagepicker.model.Image>()
+            return ImagePickerConfig {
+                val isExclude = true
+                mode = ImagePickerMode.SINGLE
+                language = "in" // Set image picker language
+                //theme = R.style.Theme_App_AdBuilder
+                returnMode = ReturnMode.ALL
+                isFolderMode = true // set folder mode (false by default)
+                isIncludeVideo = false // include video (false by default)
+                isOnlyVideo = false // include video (false by default)
+                arrowColor = Color.BLACK // set toolbar arrow up color
+                folderTitle = "Gallery" // folder selection title
+                imageTitle = "1 selected" // image selection title
+                doneButtonText = "OK" // done button text
+                showDoneButtonAlways = true // Show done button always or not
+                limit = 10 // max images can be selected (99 by default)
+                isShowCamera = true // show camera or not (true by default)
+                savePath =
+                    ImagePickerSavePath("Camera") // captured image directory name ("Camera" folder by default)
+                savePath = ImagePickerSavePath(
+                    Environment.getExternalStorageDirectory().path,
+                    isRelative = false
+                ) // can be a full path
+                selectedImages = images
+                if (isExclude) {
+                    excludedImages = images.toFiles() // don't show anything on this selected images
+                } else {
+                    selectedImages = images  // original selected images, used in multi mode
+                }
+            }
+        }
     }
+
+
+
 }

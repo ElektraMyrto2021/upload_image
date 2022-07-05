@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:backgroundTint="@color/neutral_10"
+    android:background="@drawable/ef_background_neutral10_top_radius_22"
+    android:layout_height="match_parent"
+    >
+
+<!--    <com.adbuilder.app.ui.cviews.toolbar.CToolbarView-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="412dp"-->
+<!--        android:layout_height="76dp"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        app:hasBackButton="false"-->
+<!--        app:hasCloseButton="true"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:title="Images"-->
+<!--        tools:layout_editor_absoluteX="-1dp" />-->
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable"
+        app:tabIndicatorHeight="0dp"
+        android:layout_alignParentTop="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabTextAppearance="@style/Poppins_Semi_Bold_Neutral80_14sp"
+        app:tabSelectedTextColor="@color/neutral_80"
+        app:tabTextColor="#C4C4C4">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+    </androidx.viewpager2.widget.ViewPager2>
+</androidx.constraintlayout.widget.ConstraintLayout>

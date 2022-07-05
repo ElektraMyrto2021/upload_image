@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Image Picker Sample</string>
+    <string name="app_name" translatable="false">Image Picker Sample</string>
+    <string name="checked" translatable="false">Checked</string>
+    <string name="clear" translatable="false">Clear</string>
+    <string name="done" translatable="false">Done</string>
+    <string name="no_result" translatable="false">No search results</string>
+    <string name="photo" translatable="false">Photo</string>
+    <string name="photo_selected" translatable="false">1 photo selected</string>
+    <string name="photos_selected" translatable="false">%1$d photos selected</string>
+    <string name="search" translatable="false">Minimal photo|</string>
+    <string name="unsplash" translatable="false">Unsplash</string>
+    <string name="photoBy" translatable="false">Photo by</string>
+    <string name="on" translatable="false">on</string>
+    <string name="unsplashPhotoPicker" translatable="false">Unsplash Photo Picker</string>
+    <string name="sponsored" translatable="false">Sponsored</string>
 </resources>

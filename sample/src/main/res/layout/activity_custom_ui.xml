@@ -9,6 +9,7 @@
         android:id="@+id/toolbar"
         layout="@layout/ef_imagepicker_toolbar"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"/>
 
     <LinearLayout

@@ -66,7 +66,7 @@ class CustomUIActivity : AppCompatActivity() {
                 .findFragmentById(R.id.ef_imagepicker_fragment_placeholder) as ImagePickerFragment
         } else {
             IpLogger.e("Making fragment")
-            imagePickerFragment = ImagePickerFragment.newInstance(config!!)
+            imagePickerFragment = ImagePickerFragment.newInstance()
             supportFragmentManager.beginTransaction()
                 .replace(R.id.ef_imagepicker_fragment_placeholder, imagePickerFragment)
                 .commit()
@@ -82,18 +82,18 @@ class CustomUIActivity : AppCompatActivity() {
      * Create options menu.
      */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(com.esafirm.imagepicker.R.menu.ef_image_picker_menu_main, menu)
+        menuInflater.inflate(R.menu.ef_image_picker_menu_main, menu)
         return true
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        val menuCamera = menu.findItem(com.esafirm.imagepicker.R.id.menu_camera)
+        val menuCamera = menu.findItem(R.id.menu_camera)
         if (menuCamera != null) {
             if (config != null) {
                 menuCamera.isVisible = config!!.isShowCamera
             }
         }
-        val menuDone = menu.findItem(com.esafirm.imagepicker.R.id.menu_done)
+        val menuDone = menu.findItem(R.id.menu_done)
         if (menuDone != null) {
             menuDone.title = ConfigUtils.getDoneButtonText(this, config!!)
             menuDone.isVisible = imagePickerFragment.isShowDoneButton
@@ -110,11 +110,11 @@ class CustomUIActivity : AppCompatActivity() {
             onBackPressed()
             return true
         }
-        if (id == com.esafirm.imagepicker.R.id.menu_done) {
+        if (id == R.id.menu_done) {
             imagePickerFragment.onDone()
             return true
         }
-        if (id == com.esafirm.imagepicker.R.id.menu_camera) {
+        if (id == R.id.menu_camera) {
             imagePickerFragment.captureImage()
             return true
         }
@@ -134,7 +134,7 @@ class CustomUIActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        setSupportActionBar(binding.toolbar.root as Toolbar)
+        //setSupportActionBar(binding.toolbar.root as Toolbar)
         checkNotNull(supportActionBar)
 
         actionBar = supportActionBar!!

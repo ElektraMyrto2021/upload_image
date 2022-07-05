@@ -16,9 +16,7 @@ import com.esafirm.imagepicker.model.Image
 import java.io.File
 import java.net.URLConnection
 import java.text.SimpleDateFormat
-import java.util.ArrayList
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 object ImagePickerUtils {
 
@@ -31,7 +29,11 @@ object ImagePickerUtils {
             val parent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
             } else {
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                } else {
+                    TODO("VERSION.SDK_INT < FROYO")
+                }
             }
             File(parent, path)
         } else {
@@ -106,7 +108,11 @@ object ImagePickerUtils {
 
     fun getVideoDurationLabel(context: Context?, uri: Uri): String {
         try {
-            val retriever = MediaMetadataRetriever()
+            val retriever = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD_MR1) {
+                MediaMetadataRetriever()
+            } else {
+                TODO("VERSION.SDK_INT < GINGERBREAD_MR1")
+            }
             retriever.setDataSource(context, uri)
             val durationData =
                 retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)

@@ -15,7 +15,7 @@
   </a>
 </p>
 
-# Screenshotsdfghjk
+# Screenshot
 
 <details>
 	<summary>Click to see how image picker looks…</summary>
