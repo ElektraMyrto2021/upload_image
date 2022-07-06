@@ -15,7 +15,6 @@ class PhotoUploadAdapter(fragment: PhotoUploadActivity) : FragmentStateAdapter(f
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> ImagePickerFragment.newInstance()
-            //1-> ImagePickerFragment.newInstance()
              1 -> PhotoPickerFragment()
             2 -> UploadFromDropBoxFragment()
             else -> {
