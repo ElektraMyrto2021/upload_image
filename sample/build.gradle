@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
+
 
 android {
     final sdk = rootProject.ext.sdk
